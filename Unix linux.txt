@@ -1,0 +1,812 @@
+- -> Regular file
+d -> Directory file that contains listing of other files and directories
+l -> Symbolic link file
+
+Hidden files is the one, whose first character is dot. you can ls -a to list the hidden files
+
+cat -b <filename> this cmd displays the numbers for the lines
+
+WordCount: use wc <filename> to get count of lines, words, bytes
+
+1st coulum no. of lines, words, bytes and 4th column is filename
+
+To rename a file use mv command -> mv oldfile newfile
+
+delete an existing file- rm filename ... use rm -i filename-> to get a prompt message before deleting
+
+mkdir -p /tmp/amrood/test -> This command creates all the required parent directories.
+
+rmdir dirname -> to remove directory
+Note − To remove a directory, make sure it is empty which means there should not be any file or sub-directory inside this directory.
+
+Order for file permissions:
+Owner(u)-group(g)-others(o) read-write-execute
+
+Changing Owners and Groups:
+While creating an account on Unix, it assigns a owner ID and a group ID to each user. All the permissions mentioned above are also assigned based on the Owner and the Groups.
+Two commands are available to change the owner and the group of files −
+chown − The chown command stands for "change owner" and is used to change the owner of a file.
+chgrp − The chgrp command stands for "change group" and is used to change the group of a file.
+NOTE − The super user, root, has the unrestricted capability to change the ownership of any file but normal users can change the ownership of only those files that they own.
+
+Setting the Terminal Type:
+Usually, the type of terminal you are using is automatically configured by either the login or getty programs. Sometimes, the auto configuration process guesses your terminal incorrectly.
+If your terminal is set incorrectly, the output of the commands might look strange, or you might not be able to interact with the shell properly.
+To make sure that this is not the case, most users set their terminal to the lowest common denominator in the following way −
+$TERM=vt100
+
+Setting the PATH:
+When you type any command on the command prompt, the shell has to locate the command before it can be executed.
+The PATH variable specifies the locations in which the shell should look for commands. Usually the Path variable is set as follows −
+$PATH=/bin:/usr/bin
+
+Printing:
+Before you print a file on a Unix system, you may want to reformat it to adjust the margins, highlight some words, and so on. Most files can also be printed without reformatting, but the raw printout may not be that appealing.
+Many versions of Unix include two powerful text formatters, nroff and troff.
+
+Sending Email:
+You use the Unix mail command to send and receive mail. Here is the syntax to send an email −
+$mail [-s subject] [-c cc-addr] [-b bcc-addr] to-addr
+
+Read this page about printers and emails
+
+Ping Command uses- you can check if your remote host is responding well or not.
+
+FTP Utility- File transfer Protocol:
+This utility help you to upload and download files from one computer to the other.
+The ftp utility has its own set of Unix-like commands. These commands help you perform tasks such as −
+Connect and login to a remote host.
+Navigate directories.
+List directory contents.
+Put and get files.
+Transfer files as ascii, ebcdic or binary.
+
+cmnds: ftp <ipaddress> or <hostname>
+after this command it will ask for userbname and passwd for the machine which you are trying to connect to:
+then below commands will be useful:
+put filename-> upload file from local to remote
+get filename-> reverse
+mput <filenameslist>-> upload multiple files
+mget-> reverse
+prompt off-> this turns the prompt off. By default you will recieve a prompt while transferring files
+prompt on-> reverse
+lcd dirname-> chnages directory to dirname on the local machine
+
+Telent utility:
+This command allows us to connect to remote machine from local machine and also allows to work in that machine
+cmd-> telent username.com
+
+The finger Utility:
+This command helps to display to information about all the users or a particular users who are logged into the current local machine or remote machine.
+cmd-> finger ---- this gives the info about all the logged in users on the local machine
+finger <username> --- gives info about specific user available
+finger @<remote-machinename.com> ---- gives info about the logged users on the mentioned remote-machine
+finger username@remote-machinename.com --- gives info about particular user.
+
+Vi editor:
+vi -R filename or view filename --- opens the file in read mode only
+To exit out of Vi editor without saving changes is click :q!
+if you wanted to save the file you were working on as another filename called filename2, you would type :w filename2 and return.
+yy to copy and p to paste
+
+Shell:
+A shell is a command-line interpreter and typical operations performed by shell scripts include file manipulation, program execution, and printing text.
+
+Read command takes input from the keyboard
+
+Unix has two major shells:
+Bourne and C shell
+
+To execute a program available in the current directory, use ./program_name
+
+Variables:
+A variable is nothing more than a pointer to the actual data. The shell enables you to create, assign, and delete variables.
+
+Special Variables:
+echo $$ - this writes the PID of the current shell
+echo $0 - gives filename of current executing script
+$# - gives number of arguments
+$? - gives the exit status of last command(previous command)-> exit status returned is 0 if command is successful and 1 is command is unsucessful.
+
+Unsetting Variables:
+Unsetting or deleting a variable directs the shell to remove the variable from the list of variables that it tracks. Once you unset a variable, you cannot access the stored value in the variable.
+Command-> unset variable_name
+You cannot use unset command to unset the readonly marked variables
+
+Arrays:
+If you are using Ksh shell, syntax for array defining is: set -A array-name value1 value2 value3 ... valuen
+if you are using bash shell syntax is: array_name=(value1...valuen)
+Example command:
+#!/bin/sh
+
+Mani=(Mani Kanta Swamy Marreddi)
+
+echo "First Name: ${Mani[0]}" - gives Mani o/p
+
+NAME[0]="Zara"
+NAME[1]="Qadir"
+NAME[2]="Mahnaz"
+NAME[3]="Ayan"
+NAME[4]="Daisy"
+echo "First Index: ${NAME[0]}"-> gives Zara
+echo "Second Index: ${NAME[1]}"-> gives Qadir
+
+Operators:
+Arithmetic Operators Example:
+Mutliply:
+readonly a=10
+b=10
+val=`expr $a \* $b`
+echo "a * b : $val
+Add:
+readonly a=10
+b=10
+val=`expr $a + $b`
+echo "a + b : $val
+
+conditional:
+a=10
+b=10
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+fi
+
+if [ $a != $b ]
+then
+   echo "a is not equal to b"
+fi
+
+Note: It is very important to understand that all the conditional expressions should be inside square braces with spaces around them, for example [ $a == $b ] is correct whereas, [$a==$b] is incorrect.
+      There must be spaces between the operators and the expressions. For example, 2+2 is not correct; it should be written as 2 + 2.
+      Complete expression should be enclose b/w ``, called backticks
+      You should use \ on the * symbol for multiplication.
+
+Conditional Operator:
+Operator	                         Description	                                                        Example
+=========                             ===================                                                       ============
+-eq	Checks if the value of two operands are equal or not; if yes, then the condition becomes true.	[ $a -eq $b ] is not true.
+-ne	Checks if the value of two operands are equal or not; if values are not equal, then the condition becomes true.	[ $a -ne $b ] is true.
+-gt	Checks if the value of left operand is greater than the value of right operand; if yes, then the condition becomes true.	[ $a -gt $b ] is not true.
+-lt	Checks if the value of left operand is less than the value of right operand; if yes, then the condition becomes true.	[ $a -lt $b ] is true.
+-ge	Checks if the value of left operand is greater than or equal to the value of right operand; if yes, then the condition becomes true.	[ $a -ge $b ] is not true.
+-le	Checks if the value of left operand is less than or equal to the value of right operand; if yes, then the condition becomes true.	[ $a -le $b ] is true.
+
+Boolean Operators:
+
+The following Boolean operators are supported by the Bourne Shell.
+Assume variable a holds 10 and variable b holds 20 then −
+
+Operator	Description	Example
+============ =============== ================
+!	This is logical negation. This inverts a true condition into false and vice versa.	[ ! false ] is true.
+-o	This is logical OR. If one of the operands is true, then the condition becomes true.	[ $a -lt 20 -o $b -gt 100 ] is true.
+-a	This is logical AND. If both the operands are true, then the condition becomes true otherwise false.	[ $a -lt 20 -a $b -gt 100 ] is false.
+
+String Operators:
+The following string operators are supported by Bourne Shell.
+Assume variable a holds "abc" and variable b holds "efg" then −
+
+Operator	Description	Example
+============= ============== ============
+=	Checks if the value of two operands are equal or not; if yes, then the condition becomes true.	[ $a = $b ] is not true.
+!=	Checks if the value of two operands are equal or not; if values are not equal then the condition becomes true.	[ $a != $b ] is true.
+-z	Checks if the given string operand size is zero; if it is zero length, then it returns true.	[ -z $a ] is not true.
+-n	Checks if the given string operand size is non-zero; if it is nonzero length, then it returns true.	[ -n $a ] is not false.
+str	Checks if str is not the empty string; if it is empty, then it returns false.	[ $a ] is not false.
+
+File Test Operators:
+We have a few operators that can be used to test various properties associated with a Unix file.
+Assume a variable file holds an existing file name "test" the size of which is 100 bytes and has read, write and execute permission on −
+
+Operator	Description	Example
+======== =================== ===========
+-b file	Checks if file is a block special file; if yes, then the condition becomes true.	[ -b $file ] is false.
+-c file	Checks if file is a character special file; if yes, then the condition becomes true.	[ -c $file ] is false.
+-d file	Checks if file is a directory; if yes, then the condition becomes true.	[ -d $file ] is not true.
+-f file	Checks if file is an ordinary file as opposed to a directory or special file; if yes, then the condition becomes true.	[ -f $file ] is true.
+-g file	Checks if file has its set group ID (SGID) bit set; if yes, then the condition becomes true.	[ -g $file ] is false.
+-k file	Checks if file has its sticky bit set; if yes, then the condition becomes true.	[ -k $file ] is false.
+-p file	Checks if file is a named pipe; if yes, then the condition becomes true.	[ -p $file ] is false.
+-t file	Checks if file descriptor is open and associated with a terminal; if yes, then the condition becomes true.	[ -t $file ] is false.
+-u file	Checks if file has its Set User ID (SUID) bit set; if yes, then the condition becomes true.	[ -u $file ] is false.
+-r file	Checks if file is readable; if yes, then the condition becomes true.	[ -r $file ] is true.
+-w file	Checks if file is writable; if yes, then the condition becomes true.	[ -w $file ] is true.
+-x file	Checks if file is executable; if yes, then the condition becomes true.	[ -x $file ] is true.
+-s file	Checks if file has size greater than 0; if yes, then condition becomes true.	[ -s $file ] is true.
+-e file	Checks if file exists; is true even if file is a directory but exists.	[ -e $file ] is true.
+
+Check C shell operators
+
+Loops:
+In Linux after execution of one iteration the o/p gets automatically printed in new line. To avoid this or print the o/p in the same line we use "-n".
+for example echo -n "$b ",... or 
+echo -n
+b=`expr $b + 1`
+
+Different type of loops:
+While loop, for, until, select loop
+
+Loop Control:
+While executing the loop you need to skip or stop the iterations of the loop. for this use Continue and Break statements
+
+Continue:
+NUM="1 2 3 4 5 6 7"
+
+for NUMS in $NUM
+do
+  var=`expr $NUMS % 2`
+  if [ $var -eq 0 ]
+   then
+       echo "even"
+       continue
+  fi
+  echo "odd"
+done
+
+Break:
+#!/bin/sh
+
+a=0
+
+while [ $a -lt 10 ]
+do
+   echo $a
+   if [ $a -eq 5 ]
+   then
+      break
+   fi
+   a=`expr $a + 1`
+done
+
+Learn substitution
+
+Linux Quoting:
+echo I have $1200 gives o/p 200 where as echo I have \$1200 gives o/p i have $1200
+
+\ -> this backslash takes away the meaning of special character
+for example:
+Var=ZARA
+echo i have $Var<1500 -> this gives o/p 1500: no such directory
+echo i have $Var\<1500 -> this gives o/p ZARA<1500 that means removes meaning ofspecial character.
+echo i have \$Var\<1500 -> gives o/p $Var<1500
+
+so to avoid meaning of each special character we have to make sure that it is preceeded by back slash \.
+This makes difficult to read the script. So Single quote comes into picture.
+This works exactly as back slash \
+echo i have '$Var<1500' gives o/p $Var<1500.
+
+Double Quotes:
+The use of Double quotes take qway the special meaning of all characters except the following:
+$ for parameter substitution
+backquotes for command substitution
+\$ to enable literal dollar signs
+All other \ characters are literal (not special)
+
+Example:
+VAR=ZARA
+echo '$VAR owes <-$1500.**>; [ as of (`date +%m/%d`) ]'
+gives o/p $VAR owes <-$1500.**>; [ as of (`date +%m/%d`) ]
+
+where as echo "$VAR owes <-$1500.**>; [ as of (`date +%m/%d/%y`) ] \ $VAR"
+gives o/p ZARA owes <-500.**>; [ as of (02/18/22) ] \ ZARA
+
+
+Full example and o/p:
+VAR=ZARA
+echo "$VAR owes <-$1500.**>; [ as of (`date +%m/%d/%y`) ] \ $VAR"
+echo I Have \$VAR\<1500
+echo I have "\\ "
+echo I have "$VAR<1500"
+echo I have $VAR
+echo It\'s Shell Programming
+
+O/P:
+====
+ZARA owes <-500.**>; [ as of (02/18/22) ] \ ZARA
+I Have $VAR<1500
+I have \ 
+I have ZARA<1500
+I have ZARA
+It's Shell Programming
+
+Back quote: ` `
+Anything in between back quotes would be treated as a command and would be executed.
+Example:
+DATE=date
+echo "Current Date: $DATE" this gives o/p Current Date: date
+
+DATE=`date`
+echo "Current Date: $DATE" this gives o/p Current Date: Fri Feb 18 02:53:26 UTC 2022
+
+Redirections:
+echo mani > file.txt redirects o/p to file.txt and file.txt looses all existing data
+echo mani >> file.txt appends o/p to existing file
+wc -l < users
+takes input form users file and displays o/p
+
+Here Document: <<
+here document bascially is an interactive shell command. that is it takes input form the mentioned file until and unless it finds the mentioned delimeter. If the delimeter is not present the sheel reads the input from the file forever.
+syntax: Wc -l << decimetr
+
+Example:
+$wc -l << EOF
+   This is a simple lookup program 
+	for good (and bad) restaurants
+	in Cape Town.
+EOF
+
+this gives o/p 3
+
+example:2
+#!/bin/sh
+
+cat << EOF
+This is a simple lookup program 
+for good (and bad) restaurants
+in Cape Town.
+EOF	
+
+this gives o/p->
+This is a simple lookup program
+for good (and bad) restaurants
+in Cape Town.
+
+Discard the output:
+Sometimes you will need to execute a command, but you don't want the output displayed on the screen. In such cases, you can discard the output by redirecting it to the file /dev/null −
+$ command > /dev/null
+The file /dev/null is a special file that automatically discards all its input.
+To discard both output of a command and its error output, use standard redirection to redirect STDERR to STDOUT −
+$ command > /dev/null 2>&1
+Here 2 represents STDERR and 1 represents STDOUT.
+
+Note that the file descriptor 0 is normally standard input (STDIN), 1 is standard output (STDOUT), and 2 is standard error output (STDERR).
+
+Functions:
+Syntax:
+ fucntion name(){
+    list of commands
+}
+
+If you execute exit command inside the functions it not only stops execution of the function but also execution of the program from which the function is called.
+So if you only want to just terminate the function, there is other way to do it...
+
+Function Call From Prompt:
+you can put definitions for commonly used functions inside your .profile. These definitions will be available whenevr you log in and you can use them at the command prompt
+
+Alternatively you can group the definitions in a file, say test.sh, and execute the file in the current shell by typing:
+$. test.sh
+
+To remove the definition of a function from the shell, use the unset command with the .f option. This command is also used to remove the definition of a variable to the shell.
+$ unset -f function_name
+
+Shell manpage Help:
+Unix's version of Help files are called man pages. If there is a command name and you are not sure how to use it, then Man Pages help you out with every step.
+
+syntax -> man command
+example -> man pwd
+
+Regular Expressions With SED:
+Invoking SED:
+cat /etc/passwd | sed 'd' (or)
+sed -e 'd' /etc/paasswd
+
+SED Actions: p-> prints the line, d-> deletes the line, s/pattern1/pattern2-> substitutes the first occuence with second.
+
+The SED Addresses:
+The sed also supports addresses. Addresses are either particular locations in a file or a range where a particular editing command should be applied. When the sed encounters no addresses, it performs its operations on every line in the file.
+ example:
+
+cat /etc/passwd | sed '1d' | more -> deleted 1st line and prints the rest of the /etc/passwd file
+
+Address Range:
+if you want to remove more than 1 line we can mentions like below
+
+cat /etc/passwd | sed '1, 5d' | more -> deletes from 1st till 5th line and prints remaining
+
+Sed Address ranges doesnot work in reverse direction fpr example -> cat /etc/passwd | sed '10, 4d' |more -> this deleted only 10th line
+
+some Sed Address ranges examples:
+
+'4+5d' -> deletes 4th line and 5 lines after the 4th line
+'2,5!d -> deltes all lines except 2nd till 5th line
+'1~3d' -> deletes 1st line and skips next 3 lines and then starts deleting from fourth line till the end.
+'4,10p' -> lines starting from 4 till 10 are printed>
+While using the P action, you should use -n option to avoid repitition of line printing.
+
+example: /cat/passwd | sed -n '1,3p'
+
+Substitution command:
+The substitution cmd is denoted by s.
+To substitute one string with another, the sed needs to have the information on where the first string ends and the substitution string begins. For this, we proceed with bookending the two strings with the forward slash (/) character.
+example: cat /etc/passwd | sed 's/root/amrood/' -> root is replaced by amrood .
+Note: This command substitues only the first occurence on a line. For the sed to perform global substitution add letter g to the end of cmd
+example: cat /etc/passwd | sed 's/root/amrod/g'
+
+Substitution flags:
+g -> replaces all matches, not just the first match.
+NUMBER -> replaces only Numberth match
+p -> if substitutin was made, then prints the pattern space.
+w FILENAME -> if substituion was made, the writes result to Filename.
+I or i -> Matches case-insensitive manner
+
+Using an alternative string seperator:
+If in a line the word contains / (/amrod) then to substitue the whole word along with / character we need to use different sepearator like :
+example: cat /etc/passwd | se 's:/root:/amrod:g'
+
+Replacing with empty space:
+cat /etc/passwd | sed 's/root//g'
+
+Address Substitution:
+If you want to substitute any words on tha particular line you can use below command:
+cat /etc/passwd | sed '10s/amrod/root/g'
+
+Similarly to do an adress range substitution:
+cat /etc/passwd | sed '1,5s/sh/quiet/g' -> substitues first 5 lines and rest of the llines are untouched.
+
+Matching command:
+
+using p option along with -n option to print all the matching lines
+example: cat /etc/passwd | sed -n '/root/p'.
+
+Regular expression:
+^ -> Matches the beginning of lines.  cat testing | sed '/^daemon/d' -> matches all the lines starting with daemon and deletes them.
+$ -> Matches the ending of lines. cat testing | sed '/sh$/d' -> Matches all the lines ending with sh and deletes them.
+. -> Matches any single character
+* -> Matches zero or more occurences of the previous characters
+[chars] -> matches any one of the characters given in chars, where chars is a sequence of characterrs. You can use the - character to indicate a range of characxterrs.
+
+More Matching Characters:
+/a.c/ -> since . is single character matching expression so this /a.c/ matches lines that contain strings such as a+c, a-c, abc , a3c, etc.
+/a*c/ -> since * matches zero or more charcters so this /a*c/ matches the lines that contains string like ac, ayyc, a12c, arctic-> that means any no.of character odr no characters that come b/w a and c matches our specified criteria.
+/[tT]he/ -> matches the string The and the.
+/^$/ -> Matches blank lines.
+/^.*$/ -> Matches entire line whatever it is.
+/ */ -> matches one or more spaces.
+
+The following tavle shows some frequently used set of characters:
+1	
+[a-z]
+Matches a single lowercase letter
+
+2	
+[A-Z]
+Matches a single uppercase letter
+
+3	
+[a-zA-Z]
+Matches a single letter
+
+4	
+[0-9]
+Matches a single number
+
+5	
+[a-zA-Z0-9]
+Matches a single letter or number
+
+Character Class keyword:
+Some special keywords are commonly available to regexps.
+For example, the characters a through z and the characters A through Z, constitute one such class of characters that has the keyword [[:alpha:]]
+Using the alphabet character class keyword, this command prints only those lines in the /etc/syslog.conf file that start with a letter of the alphabet −
+ cat /etc/syslog.conf | sed -n '/^[[:alpha:]]/p'
+
+The following table is a complete list of the available character class keywords in GNU sed.
+
+1
+[[:alnum:]]
+Alphanumeric [a-z A-Z 0-9]
+
+2	
+[[:alpha:]]
+Alphabetic [a-z A-Z]
+
+3	
+[[:blank:]]
+Blank characters (spaces or tabs)
+
+4	
+[[:cntrl:]]
+Control characters
+
+5	
+[[:digit:]]
+Numbers [0-9]
+
+6	
+[[:graph:]]
+Any visible characters (excludes whitespace)
+
+7	
+[[:lower:]]
+Lowercase letters [a-z]
+
+8	
+[[:print:]]
+Printable characters (non-control characters)
+
+9	
+[[:punct:]]
+Punctuation characters
+
+10	
+[[:space:]]
+Whitespace
+
+11	
+[[:upper:]]
+Uppercase letters [A-Z]
+
+12	
+[[:xdigit:]]
+Hex digits [0-9 a-f A-F]
+
+Aampersand Referencing:
+The sed metacharacter & represents the contents of the pattern that was matched. For instance, say you have a file called phone.txt full of phone numbers, such as the following −
+
+5555551212
+5555551213
+5555551214
+6665551215
+6665551216
+7775551217
+You want to make the area code (the first three digits) surrounded by parentheses for easier reading. To do this, you can use the ampersand replacement character −
+
+sed -e 's/^[[:digit]][[:digit]][[:digit]]/(&)/g' phone.txt
+Here in the pattern part you are matching the first 3 digits and then using & you are replacing those 3 digits with the surrounding parentheses
+
+Using Multiple sed Commands:
+You can use multiple sed commands in a single sed command
+sed -e 'command1' -e 'command2' -e 'command3' files
+
+Using the same mechanism, we can write the above phone number example as follows −
+sed -e 's/^[[:digit]]\{3\}/(&)/g' -e 's/)[[:digit]]\{3\}/&-/g' phones.txt
+
+File System Baiscs:
+Everything in Unix is considered to be a file, including physical devices such as DVD-ROMs, USB devices, and floppy drives.
+
+Some important unknown commands:
+file filename->Identifies the file type (binary, text, etc)
+find filename dir->Finds a file/directory
+head filename->Shows the beginning of a file
+less filename->Browses through a file from the end or the beginning
+ls dirname->Shows the contents of the directory specified
+more filename->Browses through a file from the beginning to the end
+tail filename->Shows the end of a file
+whereis filename->Shows the location of a file
+which filename->Shows the location of a file if it is in your PATH
+
+df command:
+The command df -k (disk free) displays the disk space usage in kilobytes, as shown below −
+syntax: df -k
+This gives o/p as
+Filesystem      1K-blocks      Used   Available Use% Mounted on
+/dev/vzfs        10485760   7836644     2649116  75% /
+/devices                0         0           0   0% /devices
+
+You can use the -h (human readable) option to display the output in a format that shows the size in easier-to-understand notation.
+
+du command:
+disk usage command enables you to specify directories to show disk space usage on a particular directory.
+syntax:$du -h /etc
+this gives o/p as below
+5k    /etc/cron.d
+63k   /etc/default
+3k    /etc/dfs...
+
+Mouting the file system:
+A file system must be mounted in order to be usable by the system. To see what is currently mounted (available for use) on your system, use the following command −
+cmd: mount
+
+The /mnt directory, by the Unix convention, is where temporary mounts (such as CDROM drives, remote network drives, and floppy drives) are located. If you need to mount a file system, you can use the mount command with the following syntax −
+mount -t file_system_type device_to_mount directory_to_mount_to
+
+for example if you want to mount a CD-ROM to the directory /mnt/cdrom, you can type −
+$ mount -t iso9660 /dev/cdrom /mnt/cdrom
+
+To unmount:
+umount /dev/cdrom
+
+User and Group Quotas
+The user and group quotas provide the mechanisms by which the amount of space used by a single user or all users within a specific group can be limited to a value defined by the administrator.
+
+Quotas operate around two limits that allow the user to take some action if the amount of space or number of disk blocks start to exceed the administrator defined limits −
+
+Soft Limit − If the user exceeds the limit defined, there is a grace period that allows the user to free up some space.
+
+Hard Limit − When the hard limit is reached, regardless of the grace period, no further files or blocks can be allocated.
+
+1
+quota
+Displays disk usage and limits for a user of group
+
+2	
+edquota
+This is a quota editor. Users or Groups quota can be edited using this command
+
+3	
+quotacheck
+Scans a filesystem for disk usage, creates, checks and repairs quota files
+
+4	
+setquota
+This is a command line quota editor
+
+5	
+quotaon
+This announces to the system that disk quotas should be enabled on one or more filesystems
+
+6	
+quotaoff
+This announces to the system that disk quotas should be disabled for one or more filesystems
+
+7	
+repquota
+This prints a summary of the disc usage and quotas for the specified file systems
+
+Administartion:
+Managing Users and Groups
+There are four main user administration files −
+
+/etc/passwd − Keeps the user account and password information. This file holds the majority of information about accounts on the Unix system.
+
+/etc/shadow − Holds the encrypted password of the corresponding account. Not all the systems support this file.
+
+/etc/group − This file contains the group information for each account.
+
+/etc/gshadow − This file contains secure group account information.
+
+Check all the above files using the cat command.
+
+The following table lists out commands that are available on majority of Unix systems to create and manage accounts and groups −
+
+Sr.No.	Command & Description
+1	
+useradd
+
+Adds accounts to the system
+
+2	
+usermod
+
+Modifies account attributes
+
+3	
+userdel
+
+Deletes accounts from the system
+
+4	
+groupadd
+
+Adds groups to the system
+
+5	
+groupmod
+
+Modifies group attributes
+
+6	
+groupdel
+
+Removes groups from the system
+
+Create a group:
+We will now understand how to create a group. For this, we need to create groups before creating any account 
+command: groupadd [-g gid [-o]] [-r] [-f] groupname
+
+Sr.No.	Option & Description
+1	
+-g GID
+
+The numerical value of the group's ID
+
+2	
+-o
+
+This option permits to add group with non-unique GID
+
+3	
+-r
+
+This flag instructs groupadd to add a system account
+
+4	
+-f
+
+This option causes to just exit with success status, if the specified group already exists. With -g, if the specified GID already exists, other (unique) GID is chosen
+
+5	
+groupname
+
+Actual group name to be created
+
+If you do not specify any parameter, then the system makes use of the default values.
+
+Following example creates a developers group with default values, which is very much acceptable for most of the administrators.
+
+$ groupadd developers
+Modify a Group
+To modify a group, use the groupmod syntax −
+
+$ groupmod -n new_modified_group_name old_group_name
+To change the developers_2 group name to developer, type −
+
+$ groupmod -n developer developer_2
+Here is how you will change the financial GID to 545 −
+
+$ groupmod -g 545 developer
+Delete a Group
+We will now understand how to delete a group. To delete an existing group, all you need is the groupdel command and the group name. To delete the financial group, the command is −
+
+$ groupdel developer
+This removes only the group, not the files associated with that group. The files are still accessible by their owners.
+
+Create an Account
+Let us see how to create a new account on your Unix system. Following is the syntax to create a user's account −
+
+useradd -d homedir -g groupname -m -s shell -u userid accountname
+The following table lists out the parameters −
+
+Sr.No.	Option & Description
+1	
+-d homedir
+
+Specifies home directory for the account
+
+2	
+-g groupname
+
+Specifies a group account for this account
+
+3	
+-m
+
+Creates the home directory if it doesn't exist
+
+4	
+-s shell
+
+Specifies the default shell for this account
+
+5	
+-u userid
+
+You can specify a user id for this account
+
+6	
+accountname
+
+Actual account name to be created
+
+If you do not specify any parameter, then the system makes use of the default values. The useradd command modifies the /etc/passwd, /etc/shadow, and /etc/group files and creates a home directory.
+
+Following is the example that creates an account mcmohd, setting its home directory to /home/mcmohd and the group as developers. This user would have Korn Shell assigned to it.
+
+$ useradd -d /home/mcmohd -g developers -s /bin/ksh mcmohd
+Before issuing the above command, make sure you already have the developers group created using the groupadd command.
+
+Once an account is created you can set its password using the passwd command as follows −
+
+$ passwd mcmohd20
+Changing password for user mcmohd20.
+New UNIX password:
+Retype new UNIX password:
+passwd: all authentication tokens updated successfully.
+When you type passwd accountname, it gives you an option to change the password, provided you are a superuser. Otherwise, you can change just your password using the same command but without specifying your account name.
+
+Modify an Account
+The usermod command enables you to make changes to an existing account from the command line. It uses the same arguments as the useradd command, plus the -l argument, which allows you to change the account name.
+
+For example, to change the account name mcmohd to mcmohd20 and to change home directory accordingly, you will need to issue the following command −
+
+$ usermod -d /home/mcmohd20 -m -l mcmohd mcmohd20
+Delete an Account
+The userdel command can be used to delete an existing user. This is a very dangerous command if not used with caution.
+
+There is only one argument or option available for the command .r, for removing the account's home directory and mail file.
+
+For example, to remove account mcmohd20, issue the following command −
+
+$ userdel -r mcmohd20
+If you want to keep the home directory for backup purposes, omit the -r option. You can remove the home directory as needed at a later time.
